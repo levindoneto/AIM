@@ -1,0 +1,42 @@
+****** XML ******
+
+<Order> <!-- root -->
+	<>
+		<Customer situation="new"> Neto </Customer>
+		<Items>
+			<Id> Necklace </Id>
+			<Type> Handmade </Type>
+			<Price> 12 <qPrice>
+		</Items>
+	<tOrder>
+</Order>	
+
+
+****** Schema ******
+
+-> <?xml version="1.0" encoding="UTF-8"?>
+-> define minOccurs/maxOccurs of tOrder
+
+<xs:complexType name="tOrder">
+	<xs:sequence>
+		<xs:element name="Customer" type="xs:string" />
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Type" type="xs:string" />
+				<xs:element name="Price" type="xs:integer" />
+			<xs:sequence>
+		</xs:complexType>
+	</xs:sequence>
+</xs:complexType>
+
+
+****** DTD ******
+
+<!ELEMENT Order (order)*>
+<!ELEMENT tOrder (Customer, Items+)>
+<!ELEMENT Customer (#PCDATA)> 
+<!ATTLIST Customer situation CDATA #REQUIRED>
+<!ELEMENT Items (Id, Type, Price)>
+<!ELEMENT Id (#PCDATA)>
+<!ELEMENT Type (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>
